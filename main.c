@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "vector.h"
+#include "color.h"
 
 
 int main(void){
@@ -11,11 +13,10 @@ int main(void){
         fprintf(stderr, "\r                                       ");
         fprintf(stderr, "\rScanline remaining : %d / %d", j, height-1);
         for(int i = 0; i < width; i++){
-            double ir = (double)i / (width - 1);
-            double ig = (double)j / (height - 1);
-            double ib = 0.25;
+            color pix_color;
 
-            printf("%d %d %d\n", (int)(ir * 255.999), (int)(ig * 255.999), (int)(ib * 255.999));
+            set_v((double)i / (width - 1), (double)j / (height - 1), 0.25, &pix_color);
+            write_color(&pix_color);
         }
     }
     fprintf(stderr, "\nDone. \n");
