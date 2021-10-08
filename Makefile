@@ -1,5 +1,5 @@
 CC		= g++
-CFLAGS	= -Wall
+CFLAGS	= -Wall -g3
 LDFLAGS	=
 LIBS	= -lm
 SRCS	= $(wildcard ./*.c)
