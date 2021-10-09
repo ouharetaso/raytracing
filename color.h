@@ -3,6 +3,6 @@
 
 #include "vector.h"
 
-void write_color(color* pixel_color);
+void write_color(color& pixel_color);
 
 #endif

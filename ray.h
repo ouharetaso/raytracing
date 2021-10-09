@@ -3,14 +3,19 @@
 
 #include "vector.h"
 
-typedef struct{
-    point3 _origin;
-    vec3 _direction;
-}ray;
 
-void at(ray* r, double t, point3* result);
-ray* set_ray(point3* _origin, vec3* _direction, ray* result);
-void set_orig(double x, double y, double z, ray* r);
-void set_dir(double x, double y, double z, ray* r);
+class ray{
+    point3 orig;
+    vec3 dir;
+public:
+    ray() : orig(0, 0, 0), dir(0, 0, 0) {}
+    ray(const point3& origin, const vec3& direction) : orig(origin), dir(direction) {}
+
+    point3 origin() { return orig; }
+    vec3 direction() { return dir; }
+
+    point3 at(double& t) { return orig + dir * t; }
+};
+
 
 #endif

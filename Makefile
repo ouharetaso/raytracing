@@ -2,8 +2,8 @@ CC		= g++
 CFLAGS	= -Wall -g3
 LDFLAGS	=
 LIBS	= -lm
-SRCS	= $(wildcard ./*.c)
-OBJS	= $(SRCS:.c=.o)
+SRCS	= $(wildcard ./*.cpp)
+OBJS	= $(SRCS:.cpp=.o)
 
 
 main: $(OBJS)
