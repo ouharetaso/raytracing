@@ -1,5 +1,5 @@
 CC		= g++
-CFLAGS	= -Wall -g3
+CFLAGS	= -Wall -O3 -mtune=native -march=native -mfpmath=both
 LDFLAGS	=
 LIBS	= -lm
 SRCS	= $(wildcard ./*.cpp)

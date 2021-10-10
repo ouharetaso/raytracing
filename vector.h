@@ -2,12 +2,34 @@
 #define _VECTOR_H
 
 #include <cmath>
+#include <random>
+
+
+inline double random_double() {
+    static std::uniform_real_distribution<double> distribution(0.0, 1.0);
+    static std::mt19937 generator;
+    return distribution(generator);
+}
+
+inline double random_double(double min, double max) {
+    // Returns a random real in [min,max).
+    return min + (max-min)*random_double();
+}
+
 
 class vec3{
     double e[3];
 public:
     vec3() : e{0, 0, 0} {}
     vec3(double x, double y, double z) : e{x, y, z} {}
+
+    inline static vec3 random() {
+        return vec3(random_double(), random_double(), random_double());
+    }
+
+    inline static vec3 random(double min, double max) {
+        return vec3(random_double(min, max), random_double(min, max), random_double(min, max));
+    }
 
     double x() const { return e[0]; }
     double y() const { return e[1]; }
@@ -49,8 +71,8 @@ public:
     }
     vec3 operator= (const vec3& v){
         e[0] = v.x();
-        e[1] = v.x();
-        e[1] = v.x();
+        e[1] = v.y();
+        e[2] = v.z();
 
         return *this;
     }
@@ -64,6 +86,9 @@ double dot(const vec3& u, const vec3& v);
 vec3 cross(vec3& u, vec3& v);
 
 vec3 normalize(vec3 v);
+
+inline vec3 random_in_unit_sphere();
+vec3 random_unit_vector();
 
 inline vec3 operator+ (const vec3& u, const vec3& v){
     return vec3(u[0] + v[0], u[1] + v[1], u[2] + v[2] );

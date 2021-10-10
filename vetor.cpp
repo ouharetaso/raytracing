@@ -1,6 +1,19 @@
 #include "vector.h"
 
 
+inline vec3 random_in_unit_sphere() {
+    while(true){
+        vec3 p = vec3::random(-1, 1);
+        if(p.length() >= 1) continue;
+        return p;
+    }
+}
+
+
+vec3 random_unit_vector(){
+    return normalize(random_in_unit_sphere());
+}
+
 
 double dot(const vec3& u, const vec3& v){
     return u[0] * v[0] +
