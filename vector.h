@@ -17,11 +17,7 @@ public:
     double operator[] (int i) const { return e[i]; }
     double& operator[] (int i) { return e[i]; }
 
-    /*vec3 operator+ (const vec3& u, const vec3& v);
-    vec3 operator- (const vec3& u, const vec3& v);
-    friend vec3 operator* (const vec3& v, const double& t);
-    friend vec3 operator* (const double& t, const vec3& v);
-    friend vec3 operator/ (const vec3& v, const double& t);*/
+    double length();
 
     vec3 operator+= (const vec3& v){
         e[0] += v.x();
@@ -64,10 +60,9 @@ public:
 using point3 = vec3;
 using color  = vec3;
 
-double dot(vec3& u, vec3& v);
+double dot(const vec3& u, const vec3& v);
 vec3 cross(vec3& u, vec3& v);
 
-double length(vec3& v);
 vec3 normalize(vec3 v);
 
 inline vec3 operator+ (const vec3& u, const vec3& v){

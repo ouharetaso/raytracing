@@ -2,7 +2,7 @@
 
 
 
-double dot(vec3& u, vec3& v){
+double dot(const vec3& u, const vec3& v){
     return u[0] * v[0] +
            u[1] * v[1] +
            u[2] * v[2];
@@ -15,11 +15,11 @@ vec3 cross(vec3& u, vec3& v){
                 u[0] * v[1] - u[1] * v[0]);
 }
 
-double length(vec3& v){
-    return sqrt(v[0] * v[0] + v[1] * v[1] + v[2] * v[2]);
+double vec3::length(){
+    return sqrt(e[0] * e[0] + e[1] * e[1] + e[2] * e[2]);
 }
 
 
 vec3 normalize(vec3 v){
-    return v / length(v);
+    return v / v.length();
 }
