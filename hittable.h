@@ -2,23 +2,26 @@
 #define _HITTABLE_H
 
 
+#include "vector.h"
 #include "ray.h"
+#include "material.h"
 
-struct hit_record{
-    point3 p;
-    vec3 normal;
-    double t;
-    bool front_face;
+#include <memory>
+#include <vector>
 
-    inline void set_face_normal(const ray& r, const vec3& outward_normal){
-        front_face = dot(r.direction(), outward_normal) < 0;
-        normal = front_face ? outward_normal : -1*outward_normal;
-    }
-};
+using std::shared_ptr;
+using std::make_shared;
+
+
+class material;
+
+struct hit_record;
+
 
 class hittable {
 public:
     virtual bool hit(const ray& r, double t_min, double t_max, hit_record& rec) const = 0;
 };
+
 
 #endif

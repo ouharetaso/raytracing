@@ -1,9 +1,10 @@
 CC		= g++
-CFLAGS	= -Wall -O3 -mtune=native -march=native -mfpmath=both
+CFLAGS	= -Wall -mtune=native -march=native -mfpmath=both
 LDFLAGS	=
 LIBS	= -lm
 SRCS	= $(wildcard ./*.cpp)
 OBJS	= $(SRCS:.cpp=.o)
+IMAGE   = image.ppm
 
 
 main: $(OBJS)
@@ -18,4 +19,5 @@ clean:
 
 .SILENT:
 run:main
-	./main
+	./main > ${IMAGE}
+	convert ${IMAGE} $(IMAGE:.ppm=.png)

@@ -3,5 +3,5 @@
 !*.*
 *.o
 main
-image.ppm
 *.ppm
+*.png

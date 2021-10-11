@@ -4,6 +4,9 @@
 #include <cmath>
 #include <random>
 
+const double pi = 3.1415926535897932385;
+
+double deg2rad(double deg);
 
 inline double random_double() {
     static std::uniform_real_distribution<double> distribution(0.0, 1.0);
@@ -40,6 +43,8 @@ public:
     double& operator[] (int i) { return e[i]; }
 
     double length();
+
+    bool near_zero() const;
 
     vec3 operator+= (const vec3& v){
         e[0] += v.x();
@@ -83,12 +88,14 @@ using point3 = vec3;
 using color  = vec3;
 
 double dot(const vec3& u, const vec3& v);
-vec3 cross(vec3& u, vec3& v);
+vec3 cross(const vec3& u, const vec3& v);
 
 vec3 normalize(vec3 v);
 
-inline vec3 random_in_unit_sphere();
+vec3 random_in_unit_sphere();
 vec3 random_unit_vector();
+
+vec3 reflect(const vec3& v, const vec3& n);
 
 inline vec3 operator+ (const vec3& u, const vec3& v){
     return vec3(u[0] + v[0], u[1] + v[1], u[2] + v[2] );
@@ -107,6 +114,11 @@ inline vec3 operator* (const vec3& v, const double& t) {
 
 inline vec3 operator* (const double& t, const vec3& v) {
     return vec3(v[0] * t, v[1] * t, v[2] * t);
+}
+
+
+inline vec3 operator* (const vec3& u, const vec3& v) {
+    return vec3(u[0] * v[0], u[1] * v[1], u[2] * v[2]);
 }
 
 
