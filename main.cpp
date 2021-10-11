@@ -124,7 +124,7 @@ int main(int argc, char** argv){
         }
     }
 
-    aspect_ratio = double(height) / double(width);
+    aspect_ratio = double(width) / double(height);
 
     // World
     hittable_list world = random_scene();
