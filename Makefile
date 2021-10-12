@@ -1,6 +1,6 @@
 CC		= g++
-CFLAGS	= -Wall -mtune=native -march=native -mfpmath=both
-LDFLAGS	=
+CFLAGS	= -Wall -g3 -ggdb3#-O3 -std=c++17
+LDFLAGS	= -lpthread
 LIBS	= -lm
 SRCS	= $(wildcard ./*.cpp)
 OBJS	= $(SRCS:.cpp=.o)

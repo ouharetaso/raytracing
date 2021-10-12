@@ -22,6 +22,8 @@ struct hit_record{
     shared_ptr<material> mat_ptr;
     double t;
     bool front_face;
+    double u;
+    double v;
 
     inline void set_face_normal(const ray& r, const vec3& outward_normal){
         front_face = dot(r.direction(), outward_normal) < 0;
@@ -33,6 +35,25 @@ struct hit_record{
 class material {
 public:
     virtual bool scatter(const ray& r_in, const hit_record& rec, color& attenuation, ray& scattered) const = 0;
+};
+
+
+class texture : public material{
+    std::vector<std::vector<color>> tex;
+    int u_max;
+    int v_max;
+public:
+    texture(std::vector<std::vector<color>> t) : tex(t) {
+        u_max = t.at(0).size() - 1;
+        v_max = t.size() - 1;
+    };
+
+    virtual bool scatter(const ray& r_in, const hit_record& rec, color& attenuation, ray& scattered) const override{
+        vec3 reflected = reflect(normalize(r_in.direction()), rec.normal);
+        scattered = ray(rec.p, reflected + random_in_unit_sphere());
+        attenuation = tex.at(int(v_max * rec.v)).at(u_max * rec.u);
+        return true;
+    };
 };
 
 

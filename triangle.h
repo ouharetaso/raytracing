@@ -39,6 +39,8 @@ public:
         rec.p = r.at(t);
         rec.set_face_normal(r, normal);
         rec.mat_ptr = mat_ptr;
+        rec.u = u;
+        rec.v = v;
 
         return true;
     }
