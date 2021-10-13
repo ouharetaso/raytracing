@@ -140,6 +140,7 @@ color ray_color(const ray& r, const hittable& world, int depth){
     vec3 unit_dir = normalize(r.direction());
     double t = 0.5 * (unit_dir.y() + 1.0);
     return (1.0 - t) * color(1.0, 1.0, 1.0) + t * color(0.5, 0.7, 1.0);
+    //return (1.0 - t) * color(0.01, 0.01, 0.01) + t * color(0.05, 0.07, 0.1);
 }
 
 
@@ -191,7 +192,7 @@ int main(int argc, char** argv){
 
     // Camera
     //point3 lookfrom(13, 2, 3);
-    point3 lookfrom(-6, 4, 0);
+    point3 lookfrom(-5, 3, 0);
     point3 lookat(0, 0.5, 0);
     vec3 vup(0, 1, 0);
     double dist_to_focus = 10.0;

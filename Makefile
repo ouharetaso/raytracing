@@ -4,7 +4,7 @@ LDFLAGS	= -lpthread
 LIBS	= -lm
 SRCS	= $(wildcard ./*.cpp)
 OBJS	= $(SRCS:.cpp=.o)
-IMAGE   = image.ppm
+IMAGES  = $(wildcard ./image_*.ppm)
 
 
 main: $(OBJS)
@@ -17,7 +17,7 @@ $(OBJS): $(SRCS)
 clean:
 	rm -rf *.o
 
-.SILENT:
-run:main
-	./main > ${IMAGE}
-	convert ${IMAGE} $(IMAGE:.ppm=.png)
+convert: $(IMAGES)
+	for i in $(IMAGES);do \
+		convert $$i png/$${i%.ppm}.png;\
+	done

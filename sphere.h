@@ -35,7 +35,7 @@ public:
         vec3 outward_normal = normalize(rec.p - center);
         rec.set_face_normal(r, outward_normal);
         rec.mat_ptr = mat_ptr;
-        rec.u = std::abs(acos( outward_normal.z() / sqrt(outward_normal.x()*outward_normal.x()+outward_normal.z()*outward_normal.z() ) ) ) / pi;
+        rec.u = 0.5 + (( -2 * std::signbit(outward_normal.z()) + 1 ) * acos( -outward_normal.x() / sqrt(outward_normal.x()*outward_normal.x()+outward_normal.z()*outward_normal.z() ) ) ) / (2 * pi);
         rec.v = acos(outward_normal.y()) / pi;
 
         return true;
